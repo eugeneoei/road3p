@@ -5,6 +5,7 @@ var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
+var db = require('./models');
 //  dotenv to load environment variables from a .env file
 require('dotenv').config();
 var app = express();
@@ -56,7 +57,9 @@ app.use('/', require('./controllers/auth'));
 app.use(isLoggedIn);
 
 app.get('/home', function(req,res) {
-  res.render('posts/home');
+  db.category.findAll().then(function(categories) {
+    res.render('posts/home', {categories:categories});
+  });
 });
 
 app.use('/', require('./controllers/post'));

@@ -1,7 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var post = sequelize.define('post', {
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     address: DataTypes.STRING,
     latitude: DataTypes.DECIMAL,
     longitude: DataTypes.DECIMAL,
