@@ -4,6 +4,7 @@ var ejsLayouts = require("express-ejs-layouts");
 var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
+var isLoggedIn = require('./middleware/isLoggedIn');
 //  dotenv to load environment variables from a .env file
 require('dotenv').config();
 var app = express();
@@ -44,15 +45,19 @@ app.use(function(req, res, next) {
   next();
 });
 
+
 app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.use('/', require('./controllers/auth'));
+
+// any routes after this requires authorization
+app.use(isLoggedIn);
+
 app.get('/home', function(req,res) {
   res.render('home');
 });
-
-app.use('/', require('./controllers/auth'));
 
 var server = app.listen(process.env.PORT || 3000);
 
