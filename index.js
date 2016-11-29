@@ -2,8 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var ejsLayouts = require("express-ejs-layouts");
 var session = require('express-session');
+var passport = require('./config/ppConfig');
+//  dotenv to load environment variables from a .env file
+require('dotenv').config();
 var app = express();
-
 
 
 app.set('view engine', 'ejs');
@@ -18,6 +20,8 @@ app.use(bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   // forces re-saving of the session, even if nothing has changed.
@@ -25,10 +29,21 @@ app.use(session({
   // stores the session, even if we haven't stored any values to it yet
   saveUninitialized: true
 }));
-app.use(ejsLayouts);
+// passport configuration below your session configuration.
+// this ensures that Passport is aware that the session module exists.
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.listen(3000);
+app.get('/home', function(req,res) {
+  res.render('home');
+});
+
+app.use('/', require('./controllers/auth'));
+
+var server = app.listen(process.env.PORT || 3000);
+
+module.exports = server;
