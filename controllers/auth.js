@@ -28,16 +28,19 @@ router.post('/signup', function(req, res) {
       // if created, success and redirect home
       // here ensures user is logged in immediately after singup
       passport.authenticate('local', {
-        successRedirect: '/home'
+        successRedirect: '/home',
+        successFlash: 'Your account has been created and you\'re now logged in!'
       })(req, res);
     } else {
       // if not created, the email already exists
       console.log('Email already exists');
+      req.flash('error', 'The email you entered already exists. Please use another email.');
       res.redirect('/signup');
     }
   }).catch(function(error) {
     // if an error occurs, let's see what the error is
     console.log('An error occurred: ', error.message);
+    req.flash('error', error.message);
     res.redirect('/signup');
   });
 });
@@ -45,13 +48,16 @@ router.post('/signup', function(req, res) {
 // handle user login
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
-  failureRedirect: '/auth/login'
+  successFlash: 'Welcome back!',
+  failureRedirect: '/login',
+  failureFlash: 'Seems like the email and password do not match. Please try again.',
 }));
 
 // handle user logout
 router.get('/logout', function(req, res) {
   req.logout();
   console.log('logged out');
+  req.flash('success', 'You have successfully logged out');
   res.redirect('/');
 });
 
