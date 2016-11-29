@@ -1,0 +1,22 @@
+{
+  "name": "road3p",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugeneoei/road3p.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eugeneoei/road3p/issues"
+  },
+  "homepage": "https://github.com/eugeneoei/road3p#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
