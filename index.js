@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var ejsLayouts = require("express-ejs-layouts");
+var session = require('express-session');
 var app = express();
 
 
@@ -16,6 +17,13 @@ app.use(express.static("static"));
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
+}));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  // forces re-saving of the session, even if nothing has changed.
+  resave: false,
+  // stores the session, even if we haven't stored any values to it yet
+  saveUninitialized: true
 }));
 app.use(ejsLayouts);
 
