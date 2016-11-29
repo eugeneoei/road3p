@@ -56,8 +56,10 @@ app.use('/', require('./controllers/auth'));
 app.use(isLoggedIn);
 
 app.get('/home', function(req,res) {
-  res.render('home');
+  res.render('posts/home');
 });
+
+app.use('/', require('./controllers/post'));
 
 var server = app.listen(process.env.PORT || 3000);
 
