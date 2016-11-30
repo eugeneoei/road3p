@@ -153,9 +153,8 @@ router.put('/posts/:id', function(req,res) {
       longitude: longitude
     }, {
       where: { id: req.params.id }
-    }).then(function(post) {
-      console.log('see post here >>>>>', post);
-      res.redirect('/posts/' + post);
+    }).then(function() {
+      res.redirect('/posts/' + req.params.id);
     });
   });
 });
