@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     category: DataTypes.STRING,
     image_url: DataTypes.STRING,
     description: DataTypes.TEXT,
-    authorId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

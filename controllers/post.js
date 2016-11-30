@@ -23,9 +23,21 @@ app.use(methodOverride('_method'));
 
 app.use(isLoggedIn);
 
-// GET all posts
+// GET all posts by any users
 router.get('/posts', function(req,res) {
 
+});
+
+// GET all posts by current user
+router.get('/posts/user', function(req,res) {
+  db.user.findOne({
+    where: { id: req.user.dataValues.id }
+  }).then(function(user) {
+    user.getPosts().then(function(posts) {
+      // console.log('see hereeeee', posts)
+      res.render('posts/userPosts', {posts: posts})
+    });
+  });
 });
 
 // GET one post
@@ -65,7 +77,8 @@ router.post('/posts', function(req,res) {
         latitude: latitude,
         longitude: longitude
       }).then(function(post) {
-        res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
+        res.redirect('posts/user')
+        // res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
       });
     });
   });

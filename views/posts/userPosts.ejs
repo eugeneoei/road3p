@@ -1,5 +1,5 @@
 <h1>user gets redirected after successfully creating a post</h1>
 
-<p>
-  <%= message %>
-</p>
+<% posts.forEach(function(post) { %>
+  <p><%= post.id %></p>
+<% }) %>
