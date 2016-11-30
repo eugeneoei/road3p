@@ -1,6 +1,8 @@
 $("document").ready(function(){
   console.log("loaded");
 
+  $('#alert').delay(5000).fadeOut(2000)
+
   var map = L.map('map', {
     // latitude then longtitude
     center: [1.290270, 103.851959],
@@ -13,6 +15,49 @@ $("document").ready(function(){
    zoomControl: false,
    accessToken: 'pk.eyJ1IjoiZXVnZW5lb2VpIiwiYSI6ImNpdDlnanl3bTBqNm8yb3AydGIzdnFncHQifQ.xbhCGgpxzfwL_NtEFDWkXg'
  }).addTo(map);
+
+  // get client's current location
+  if (navigator.geolocation) {
+   var optn = {
+     enableHighAccuracy : true,
+     timeout : Infinity,
+     maximumAge : 0
+   };
+   navigator.geolocation.getCurrentPosition(showPosition, showError, optn);
+  } else {
+   alert('Geolocation is not supported in your browser');
+  }
+
+  function showPosition(position) {
+   // document.write('Latitude: '+position.coords.latitude+'Longitude: '+position.coords.longitude);
+   console.log(position.coords.latitude);
+   var latitude = position.coords.latitude;
+   // 1.2790971
+   var longitude = position.coords.longitude;
+   // 103.8414975
+   console.log(position.coords.longitude);
+   L.marker([latitude, longitude]).addTo(map).bindPopup("this is your current location").openPopup();
+   // L.marker([1.375133, 103.846914]).addTo(map);
+   // L.marker(coordinates[i]).addTo(map).bindPopup(title[i].value).openPopup();
+
+  }
+
+  function showError(error) {
+   switch(error.code) {
+     case error.PERMISSION_DENIED:
+       alert("User denied the request for Geolocation.");
+       break;
+     case error.POSITION_UNAVAILABLE:
+       alert("Location information is unavailable.");
+       break;
+     case error.TIMEOUT:
+       alert("The request to get user location timed out.");
+       break;
+     case error.UNKNOWN_ERROR:
+       alert("An unknown error occurred.");
+       break;
+   }
+  }
 
   $('#create-form').hide();
 
