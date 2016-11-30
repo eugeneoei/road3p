@@ -5,6 +5,18 @@ var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
 var methodOverride = require('method-override');
 
+// convert address to longitude and latitude
+var NodeGeocoder = require('node-geocoder');
+var options = {
+  provider: 'google',
+
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: process.env.KEY_SECRET, // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+var geocoder = NodeGeocoder(options);
+
 var app = express();
 
 app.use(methodOverride('_method'));
@@ -33,30 +45,64 @@ router.get('/posts/:id/edit', function(req,res) {
 
 
 // CREATE new post
+// need to convert address to lat and long
 router.post('/posts', function(req,res) {
-  db.post.findOrCreate({
-    where: {
-      address: req.body.address
-    },
-    defaults: {
-      title: req.body.title,
-      image_url: req.body.image_url,
-      category: req.body.category,
-      description: req.body.description,
-    }
-  }).spread(function(post, created) {
-    if (created) {
-      res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
-    } else {
-      console.log('falied meh?????')
-      req.flash('error', 'Seems like you missed out some fields. Please try again.');
-      res.redirect('/home');
-    }
-  }).catch(function(error) {
-    req.flash('error', error.message);
-    res.redirect('/home');
+  var latitude = 0;
+  var longitude = 0;
+  geocoder.geocode(req.body.address, function(err, r) {
+    latitude = r[0].latitude;
+    longitude = r[0].longitude;
+    // console.log('see here >>>>>>>>', req.user.dataValues.id);
+    db.user.findOne({
+      where: { id: req.user.dataValues.id }
+    }).then(function(user) {
+      user.createPost({
+        address: req.body.address,
+        title: req.body.title,
+        image_url: req.body.image_url,
+        category: req.body.category,
+        description: req.body.description,
+        latitude: latitude,
+        longitude: longitude
+      }).then(function(post) {
+        res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
+      });
+    });
   });
 });
+
+// CREATE new post
+// router.post('/posts', function(req,res) {
+//   geocoder.geocode(req.body.address, function(err, r) {
+//     var latitude = r[0].latitude;
+//     var longitude = r[0].longitude;
+//     db.post.findOrCreate({
+//       where: {
+//         address: req.body.address
+//       },
+//       defaults: {
+//         title: req.body.title,
+//         image_url: req.body.image_url,
+//         category: req.body.category,
+//         description: req.body.description,
+//         latitude: latitude,
+//         longitude: longitude,
+//         userId: req.user.dataValues.id
+//       }
+//     }).spread(function(post, created) {
+//       if (created) {
+//         res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
+//       } else {
+//         console.log('falied meh?????')
+//         req.flash('error', 'Seems like you missed out some fields. Please try again.');
+//         res.redirect('/home');
+//       }
+//     }).catch(function(error) {
+//       req.flash('error', error.message);
+//       res.redirect('/home');
+//     });
+//   })
+// });
 
 
 // UPDATE post

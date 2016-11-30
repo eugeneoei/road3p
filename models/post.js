@@ -10,11 +10,13 @@ module.exports = function(sequelize, DataTypes) {
     longitude: DataTypes.DECIMAL,
     category: DataTypes.STRING,
     image_url: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    authorId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        models.post.belongsTo(models.user);
       }
     }
   });
