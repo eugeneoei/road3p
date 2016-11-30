@@ -1,0 +1,34 @@
+<h1>here is where user edits post</h1>
+
+<div id='update-form' class="container box">
+  <div class="col-md-4 col-md-offset-4">
+    <form action='/posts/<%= info[0].dataValues.id %>?_method=PUT' method="post">
+
+      <div class="form-group">
+        <div class='col-md-12'>
+          <small>Title</small>
+          <input class='form-input' type="text" name="title" value="<%= info[0].dataValues.title %>">
+          <small>Address</small>
+          <input class='form-input' type="text" name="address" value="<%= info[0].dataValues.address %>">
+          <small>Category</small>
+          <select name="category">
+            <option value='<%= info[0].category %>'><%= info[0].category %></option>
+            <% var categories = info[1] %>
+            <% categories.forEach(function(category) { %>
+              <% if (info[0].dataValues.category == category.dataValues.name) { %>
+              <% } else { %>
+              <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
+              <% } %>
+            <% }) %>
+          </select>
+          <small>Image</small>
+          <input class='form-input' type="text" name="image_url" value="<%= info[0].dataValues.image_url %>">
+          <small>Description</small>
+          <textarea class="entry" type="text" name="description" rows="10" cols="40" value=""><%= info[0].dataValues.description %></textarea>
+          <button class="btn btn-default" type="submit">Update</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

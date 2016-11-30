@@ -16,7 +16,7 @@ module.exports = {
         // GYMS
         {
             title: 'The Forge',
-            address: '114 Lavender Street, #05-79, CT Hub 2',
+            address: '114 Lavender Street, #05-79, CT Hub 2, Singapore 338729',
             latitude: 1.3115464,
             longitude: 103.8626995,
             category: 'Gyms',

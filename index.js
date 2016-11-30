@@ -6,6 +6,7 @@ var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var db = require('./models');
+var methodOverride = require('method-override');
 //  dotenv to load environment variables from a .env file
 require('dotenv').config();
 var app = express();
@@ -16,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 // this declares which is the static folder
 app.use(express.static("static"));
+app.use(methodOverride('_method'));
 // Form data is passed as payload of the request. Every field that has a name will be included in that payload
 // and it is sent as form encoded text. When body-parser is installed it automatically parses the form body into
 // a javascript object that we can use and it stores it in req.body so we can use it
