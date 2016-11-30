@@ -16,14 +16,14 @@
             <% var description = post.description %>
             <p>
               <%= description.slice(0,200) %>...
-              <a href="post/<%= post.id %>">Read More</a>
+              <a href="/posts/<%= post.id %>">Read More</a>
             </p>
             <% } else { %>
             <p><%= post.description %></p>
             <% } %>
             <p>
-              <a href="post/<%= post.id %>/edit">Edit</a>
-              <a href="post/delete">Delete</a>
+              <a href="/posts/<%= post.id %>/edit">Edit</a>
+              <a href="/posts/delete">Delete</a>
             </p>
           </div>
         </div>
