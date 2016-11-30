@@ -33,7 +33,9 @@ router.get('/posts/user', function(req,res) {
   db.user.findOne({
     where: { id: req.user.dataValues.id }
   }).then(function(user) {
-    user.getPosts().then(function(posts) {
+    user.getPosts({
+      order: [['createdAt', 'DESC']]
+    }).then(function(posts) {
       // console.log('see hereeeee', posts)
       res.render('posts/post_user', {posts: posts})
     });
@@ -42,7 +44,6 @@ router.get('/posts/user', function(req,res) {
 
 // GET one post
 router.get('/posts/:id', function(req,res) {
-  console.log('see here for get one post id', req.params.id);
   db.post.findOne({
     where: { id: req.params.id}
   }).then(function(post) {
@@ -64,8 +65,6 @@ router.get('/posts/:id/edit', function(req,res) {
     info.push(post);
     db.category.findAll().then(function(categories) {
       info.push(categories);
-      // console.log('see hereeeee for index zero', info[0].dataValues);
-      // console.log('see hereeeee for index one', info[1][0]);
       res.render('posts/post_edit', {info: info});
     })
   });
@@ -78,10 +77,8 @@ router.post('/posts', function(req,res) {
   var latitude = 0;
   var longitude = 0;
   geocoder.geocode(req.body.address, function(err, r) {
-    console.log('see here for new post', r);
     latitude = r[0].latitude;
     longitude = r[0].longitude;
-    // console.log('see here >>>>>>>>', req.user.dataValues.id);
     db.user.findOne({
       where: { id: req.user.dataValues.id }
     }).then(function(user) {
@@ -95,7 +92,6 @@ router.post('/posts', function(req,res) {
         longitude: longitude
       }).then(function(post) {
         res.redirect('posts/user')
-        // res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
       });
     });
   });

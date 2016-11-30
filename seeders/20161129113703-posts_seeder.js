@@ -101,7 +101,7 @@ module.exports = {
         // CAFES
         {
             title: 'Ronin Cafe',
-            address: '17 Hongkong Street',
+            address: '17 Hongkong Street, Singapore',
             latitude: 1.287637,
             longitude: 103.8473025,
             category: 'Cafes',
@@ -210,7 +210,7 @@ module.exports = {
         },
         {
             title: 'Macritchie Reservoir Park',
-            address: '36 Lornie Rd Singapur 298735',
+            address: '36 Lornie Rd Singapore 298735',
             latitude: 1.3400941,
             longitude: 103.8216498,
             category: 'Treks',
@@ -222,7 +222,7 @@ module.exports = {
         },
         {
             title: 'Pulau Ubin',
-            address: 'Pulau Ubin Island Singapur 508310',
+            address: 'Pulau Ubin Island Singapore 508310',
             latitude: 1.4123955,
             longitude: 103.9581025,
             category: 'Treks',
@@ -234,7 +234,7 @@ module.exports = {
         },
         {
             title: 'Labrador Nature Reserve',
-            address: 'Labrador Villa Road Singapur 119187',
+            address: 'Labrador Villa Road Singapore 119187',
             latitude: 1.26986,
             longitude: 103.801778,
             category: 'Treks',
