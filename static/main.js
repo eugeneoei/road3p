@@ -73,9 +73,7 @@ $("document").ready(function(){
     markerArray.forEach(function(markerPair) {
       console.log('remove old markers');
       console.log(markerPair);
-      // map.removeLayer(L.marker(markerPair).addTo(map))
       map.removeLayer(markerPair);
-      // L.marker(markerPair).remove();
       markerArray = [];
     });
     var category = $(this).val()
@@ -87,21 +85,55 @@ $("document").ready(function(){
       console.log('ajax success');
       console.log(dataFromServer);
       dataFromServer.posts.forEach(function(post) {
-        var pair = [];
         var latitude = post.latitude;
         var longitude = post.longitude;
-        pair.push(latitude);
-        pair.push(longitude);
-        // markerArray.push(pair);
         var title = post.title
         var marker = L.marker([latitude, longitude]).addTo(map).bindPopup(title).openPopup();
+        // push marker into global array to store info first
+        // then remove all old markers on every new ajax get request
         markerArray.push(marker);
-        pair = [];
-      })
+        var address;
+        var description;
+
+        if (post.address) {
+          address = post.address
+        } else {
+          // do nothing
+        }
+
+        if (post.description.length > 100) {
+          description = post.description.slice(0,100)
+        } else {
+          description = post.description
+        }
+
+        // append posts onto page
+        $('#ajax-post').append(
+          '<div id="ajax-post-2" class="container">' +
+            '<div class="row">' +
+            '</div>' +
+          '</div>'
+        )
+        $('#ajax-post-2').append(
+          '<div class="col-sm-6 col-md-4">' +
+            '<div class="thumbnail">' +
+              '<img class="post-image" src="' + post.image_url + '" alt="...">' +
+              '<div class="caption">' +
+                '<h3>' + post.title + '</h3>' +
+                '<p>' + address + '</p>' +
+                '<p>' + post.category + '</p>' +
+                '<p>' + description + '...</p>' +
+                '<p><a href="/posts/' + post.id + '">Read More</a></p>' +
+              '</div>' +
+            '</div>' +
+          '</div>'
+        )
+        var address = '';
+        var description = '';
+      });
       console.log('markerArray', markerArray);
     }).fail(function() {
       console.log('ajax failed');
     })
   });
-
 });
