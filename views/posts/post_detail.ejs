@@ -13,8 +13,10 @@
           <p><%= post.category %></p>
           <p><%= post.description %></p>
           <p>
-            <a href="/posts/<%= post.id %>/edit">Edit</a>
-            <a href="/posts/delete">Delete</a>
+            <a class="btn btn-default" role='button' href="/posts/<%= post.id %>/edit">Edit</a>
+            <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+              <button class="btn btn-default" type="submit">Delete</button>
+            </form>
           </p>
         </div>
       </div>

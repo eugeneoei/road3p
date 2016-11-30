@@ -154,6 +154,7 @@ router.put('/posts/:id', function(req,res) {
     }, {
       where: { id: req.params.id }
     }).then(function(post) {
+      console.log('see post here >>>>>', post);
       res.redirect('/posts/' + post);
     });
   });
@@ -161,7 +162,11 @@ router.put('/posts/:id', function(req,res) {
 
 // DELETE post
 router.delete('/posts/:id', function(req,res) {
-
+  db.post.destroy({
+  where: { id: req.params.id }
+  }).then(function() {
+    res.redirect('/posts/user')
+  });
 });
 
 module.exports = router;
