@@ -34,7 +34,7 @@ router.get('/posts/user', function(req,res) {
     where: { id: req.user.dataValues.id }
   }).then(function(user) {
     user.getPosts().then(function(posts) {
-      // console.log('see hereeeee', posts)
+      console.log('see hereeeee', posts)
       res.render('posts/userPosts', {posts: posts})
     });
   });
@@ -42,7 +42,11 @@ router.get('/posts/user', function(req,res) {
 
 // GET one post
 router.get('/posts/:id', function(req,res) {
-
+  db.post.findOne({
+    where: { id: req.params.id}
+  }).then(function(post) {
+    res.render('posts/post', {post: post})
+  });
 });
 
 // GET form to crete new post
@@ -52,7 +56,11 @@ router.get('/posts/new', function(req,res) {
 
 // GET form to edit post
 router.get('/posts/:id/edit', function(req,res) {
-
+  db.post.findOne({
+    where: { id: req.params.id}
+  }).then(function(post) {
+    res.render('posts/edit', {post: post})
+  });
 });
 
 

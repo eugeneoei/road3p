@@ -1,5 +1,33 @@
 <h1>user gets redirected after successfully creating a post</h1>
 
-<% posts.forEach(function(post) { %>
-  <p><%= post.id %></p>
-<% }) %>
+  <div class="container">
+    <div class="row">
+      <% posts.forEach(function(post) { %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="<%= post.image_url %>" alt="...">
+          <div class="caption">
+            <h3><%= post.title %></h3>
+            <% if (post.address) { %>
+              <p><%= post.address %></p>
+            <% } %>
+            <p><%= post.category %></p>
+            <% if (post.description.length > 200) { %>
+            <% var description = post.description %>
+            <p>
+              <%= description.slice(0,200) %>...
+              <a href="post/<%= post.id %>">Read More</a>
+            </p>
+            <% } else { %>
+            <p><%= post.description %></p>
+            <% } %>
+            <p>
+              <a href="post/<%= post.id %>/edit">Edit</a>
+              <a href="post/delete">Delete</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>

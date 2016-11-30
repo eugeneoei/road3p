@@ -2,15 +2,20 @@
   width: 20px;
 }
 
-#create-button {
+.button-link {
   border: 1px solid black;
 }
 
-#create-button:hover {
+.button-link:hover {
+  border: 1px solid black;
   background-color: black;
   color: white;
 }
 
 .box {
   width: 50%;
+}
+
+.post-image {
+  width: 100%;
 }
