@@ -72,7 +72,10 @@ $("document").ready(function(){
   $('.category-select').change(function() {
     markerArray.forEach(function(markerPair) {
       console.log('remove old markers');
-      L.marker(markerPair).remove();
+      console.log(markerPair);
+      // map.removeLayer(L.marker(markerPair).addTo(map))
+      map.removeLayer(markerPair);
+      // L.marker(markerPair).remove();
       markerArray = [];
     });
     var category = $(this).val()
@@ -89,9 +92,10 @@ $("document").ready(function(){
         var longitude = post.longitude;
         pair.push(latitude);
         pair.push(longitude);
-        markerArray.push(pair);
+        // markerArray.push(pair);
         var title = post.title
-        L.marker([latitude, longitude]).addTo(map).bindPopup(title).openPopup();
+        var marker = L.marker([latitude, longitude]).addTo(map).bindPopup(title).openPopup();
+        markerArray.push(marker);
         pair = [];
       })
       console.log('markerArray', markerArray);
