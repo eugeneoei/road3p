@@ -4,6 +4,12 @@
   </div> -->
   <a id='create-button' class="btn btn-default button-link col-md-4" href='#create-form' role="button">New Post</a>
   <a id='user-posts-button' class="btn btn-default button-link col-md-4" href='posts/user' role="button">Your Posts</a>
+  <select class="category-select" name="category-select">
+    <option value="all">All</option>
+    <% categories.forEach(function(category) { %>
+    <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
+    <% }) %>
+  </select>
 </div>
 
 <div class="container" id='map'></div>

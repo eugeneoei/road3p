@@ -30,13 +30,13 @@ $("document").ready(function(){
 
   function showPosition(position) {
    // document.write('Latitude: '+position.coords.latitude+'Longitude: '+position.coords.longitude);
-   console.log(position.coords.latitude);
+  //  console.log(position.coords.latitude);
    var latitude = position.coords.latitude;
    // 1.2790971
    var longitude = position.coords.longitude;
    // 103.8414975
-   console.log(position.coords.longitude);
-   L.marker([latitude, longitude]).addTo(map).bindPopup("this is your current location").openPopup();
+  //  console.log(position.coords.longitude);
+   L.marker([latitude, longitude]).addTo(map).bindPopup("You're here").openPopup();
    // L.marker([1.375133, 103.846914]).addTo(map);
    // L.marker(coordinates[i]).addTo(map).bindPopup(title[i].value).openPopup();
 
@@ -64,5 +64,40 @@ $("document").ready(function(){
   $('#create-button').on('click', function() {
     $('#create-form').show();
   })
+
+  // declare an array to store latlang for removal on new ajax call
+  var markerArray = [];
+
+  // AJAX GET request whenever user selects a dropdown
+  $('.category-select').change(function() {
+    markerArray.forEach(function(markerPair) {
+      console.log('remove old markers');
+      L.marker(markerPair).remove();
+      markerArray = [];
+    });
+    var category = $(this).val()
+    // console.log(category);
+    $.ajax({
+      url: '/category/' + category,
+      method: 'GET'
+    }).done(function(dataFromServer) {
+      console.log('ajax success');
+      console.log(dataFromServer);
+      dataFromServer.posts.forEach(function(post) {
+        var pair = [];
+        var latitude = post.latitude;
+        var longitude = post.longitude;
+        pair.push(latitude);
+        pair.push(longitude);
+        markerArray.push(pair);
+        var title = post.title
+        L.marker([latitude, longitude]).addTo(map).bindPopup(title).openPopup();
+        pair = [];
+      })
+      console.log('markerArray', markerArray);
+    }).fail(function() {
+      console.log('ajax failed');
+    })
+  });
 
 });

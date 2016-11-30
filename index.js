@@ -64,6 +64,15 @@ app.get('/home', function(req,res) {
   });
 });
 
+app.get('/category/:name', function(req,res) {
+  db.post.findAll({
+    where: { category: req.params.name}
+  }).then(function(posts) {
+    res.json({posts:posts});
+  });
+});
+
+// router to handle posts
 app.use('/', require('./controllers/post'));
 
 var server = app.listen(process.env.PORT || 3000);
