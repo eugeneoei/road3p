@@ -4,8 +4,8 @@
     <div class="row">
       <% posts.forEach(function(post) { %>
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <img class='post-image' src="<%= post.image_url %>" alt="...">
+        <div class="thumbnail thumbnail-own">
+          <img class='post-image img-responsive' src="<%= post.image_url %>" alt="...">
           <div class="caption">
             <h3><%= post.title %></h3>
             <% if (post.address) { %>
@@ -21,6 +21,7 @@
             <% } else { %>
             <p><%= post.description %></p>
             <% } %>
+
             <p>
               <a class="btn btn-default" role='button' href="/posts/<%= post.id %>/edit">Edit</a>
               <!-- <a href="/posts/<%= post.id %>">Delete</a> -->

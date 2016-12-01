@@ -18,6 +18,7 @@
 
 .post-image {
   width: 80% !important;
+  height:250px !important;
 }
 
 #map {
@@ -28,3 +29,23 @@
 #ajax-post {
   margin-top: 2%;
 }
+
+.thumbnail {
+  height: 488px;
+}
+
+.thumbnail-own {
+  height: 575px !important;
+}
+
+.thumbnail-one {
+  border: none !important;
+}
+
+/*.blah {
+  background-image: url("post.image_url");
+  background-image: ur
+  background-size: contain;
+}
+
+style="background-image: url("' + post.image_url + '"); background-size: contain;"'*/

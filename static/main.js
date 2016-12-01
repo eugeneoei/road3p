@@ -63,6 +63,7 @@ $("document").ready(function(){
 
   $('#create-button').on('click', function() {
     $('#create-form').show();
+    $('#ajax-post').empty();
   })
 
   // declare an array to store latlang for removal on new ajax call
@@ -70,12 +71,22 @@ $("document").ready(function(){
 
   // AJAX GET request whenever user selects a dropdown
   $('.category-select').change(function() {
+
+    // remove old markers
     markerArray.forEach(function(markerPair) {
       console.log('remove old markers');
       console.log(markerPair);
       map.removeLayer(markerPair);
       markerArray = [];
     });
+
+    // hide form
+    $('#create-form').hide();
+
+    // empty old thumbnails
+    $('#ajax-post').empty();
+
+    // AJAX CALL
     var category = $(this).val()
     // console.log(category);
     $.ajax({
@@ -109,15 +120,15 @@ $("document").ready(function(){
 
         // append posts onto page
         $('#ajax-post').append(
-          '<div id="ajax-post-2" class="container">' +
-            '<div class="row">' +
+          '<div class="container">' +
+            '<div id="ajax-post-2" class="row style="display:flex; flex-wrap: wrap;">' +
             '</div>' +
           '</div>'
         )
         $('#ajax-post-2').append(
           '<div class="col-sm-6 col-md-4">' +
             '<div class="thumbnail">' +
-              '<img class="post-image" src="' + post.image_url + '" alt="...">' +
+              '<img class="post-image img-responsive" src="' + post.image_url + '" alt="...">' +
               '<div class="caption">' +
                 '<h3>' + post.title + '</h3>' +
                 '<p>' + address + '</p>' +
