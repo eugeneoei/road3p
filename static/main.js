@@ -1,7 +1,7 @@
 $("document").ready(function(){
   console.log("loaded");
 
-  // authentication
+  // AUTHENTICATION
   $('#login-form').hide();
   $('#signup-form').hide();
   $('#back-div').hide();
@@ -27,10 +27,11 @@ $("document").ready(function(){
     $('#back-div').hide();
   });
 
-  // authentication end
+  // AUTHENTICATION END
 
   $('#alert').delay(5000).fadeOut(2000)
 
+  // PLOT MAP
   var map = L.map('map', {
     // latitude then longtitude
     center: [1.290270, 103.851959],
@@ -38,13 +39,16 @@ $("document").ready(function(){
   });
 
   L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
-   attribution: '<a href="http://mapbox.com">Mapbox</a>',
-   maxZoom: 18,
-   zoomControl: false,
-   accessToken: 'pk.eyJ1IjoiZXVnZW5lb2VpIiwiYSI6ImNpdDlnanl3bTBqNm8yb3AydGIzdnFncHQifQ.xbhCGgpxzfwL_NtEFDWkXg'
- }).addTo(map);
+    attribution: '<a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    zoomControl: false,
+    accessToken: 'pk.eyJ1IjoiZXVnZW5lb2VpIiwiYSI6ImNpdDlnanl3bTBqNm8yb3AydGIzdnFncHQifQ.xbhCGgpxzfwL_NtEFDWkXg'
+  }).addTo(map);
 
-  // get client's current location
+  // PLOT MAP END
+
+
+  // GET CLIENT'S CURRENT LOCATION
   if (navigator.geolocation) {
    var optn = {
      enableHighAccuracy : true,
@@ -67,7 +71,6 @@ $("document").ready(function(){
    L.marker([latitude, longitude]).addTo(map).bindPopup("You're here").openPopup();
    // L.marker([1.375133, 103.846914]).addTo(map);
    // L.marker(coordinates[i]).addTo(map).bindPopup(title[i].value).openPopup();
-
   }
 
   function showError(error) {
@@ -86,18 +89,21 @@ $("document").ready(function(){
        break;
    }
   }
+  // GET CLIENT'S CURRENT LOCATION END
 
+
+  // HIDE/SHOW FORM
   $('#create-form').hide();
 
   $('#create-button').on('click', function() {
     $('#create-form').show();
     $('#ajax-post').empty();
   })
+  // HIDE/SHOW FORM END
 
+  // AJAX GET REQUEST WHENEVER USER SELECTS A DROPDOWN OPTION
   // declare an array to store latlang for removal on new ajax call
   var markerArray = [];
-
-  // AJAX GET request whenever user selects a dropdown
   $('.category-select').change(function() {
 
     // remove old markers
@@ -176,4 +182,6 @@ $("document").ready(function(){
       console.log('ajax failed');
     })
   });
-});
+  // AJAX GET REQUEST WHENEVER USER SELECTS A DROPDOWN OPTION
+
+}); // DOM CONTENT LOADED END

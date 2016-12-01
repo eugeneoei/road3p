@@ -4,14 +4,14 @@ var passport = require('../config/ppConfig');
 var router = express.Router();
 
 // GET signup page
-router.get("/signup", function(req,res){
-  res.render("auth/signup");
-})
+// router.get("/signup", function(req,res){
+//   res.render("auth/signup");
+// })
 
 // GET login page
-router.get("/login", function(req,res){
-  res.render("auth/login");
-})
+// router.get("/login", function(req,res){
+//   res.render("auth/login");
+// })
 
 // handle user signup registration
 router.post('/signup', function(req, res) {
@@ -35,13 +35,13 @@ router.post('/signup', function(req, res) {
       // if not created, the email already exists
       console.log('Email already exists');
       req.flash('error', 'The email you entered already exists. Please use another email.');
-      res.redirect('/signup');
+      res.redirect('/');
     }
   }).catch(function(error) {
     // if an error occurs, let's see what the error is
     console.log('An error occurred: ', error.message);
     req.flash('error', error.message);
-    res.redirect('/signup');
+    res.redirect('/');
   });
 });
 
@@ -49,7 +49,7 @@ router.post('/signup', function(req, res) {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
   successFlash: 'Welcome back!',
-  failureRedirect: '/login',
+  failureRedirect: '/',
   failureFlash: 'Seems like the email and password do not match. Please try again.',
 }));
 
