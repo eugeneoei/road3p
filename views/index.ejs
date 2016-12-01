@@ -1,5 +1,90 @@
+<div class="container" id="auth-div">
 
-<h1>test test</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 logo-div">
+      <img class='center-block img-responsive' src="http://vignette2.wikia.nocookie.net/mexico/images/4/4c/(R).png/revision/latest?cb=20131112010123&path-prefix=es" alt="" />
+    </div>
+  </div>
 
-<a href=/signup>Sign Up</a>
-<a href=/login>Log in</a>
+  <div class="row">
+    <div id='log-in-div' class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 auth-button">
+      Log In
+    </div>
+  </div>
+
+  <div class="row">
+    <div id='sign-up-div' class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 auth-button">
+      Sign Up
+    </div>
+  </div>
+
+  <div class="row" id='login-form'>
+    <form action="/login" method="POST">
+      <!-- <input type="text" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit">Log in!</button> -->
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>Email</small>
+          <input id='loginEmail' class='form-input' type="text" name="email" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>Password</small>
+          <input id='loginPassword' class='form-input' type="password" name="password" placeholder="Password">
+        </div>
+      </div>
+      <div class='col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3' style='padding:0px;'>
+        <button class='form-button btn btn-default' type="submit">Log In!</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="row" id='signup-form'>
+    <form action="/signup" method="POST">
+      <!-- <input type="text" name="email" placeholder="Email">
+      <input type="text" name="firstName" placeholder="First Name">
+      <input type="text" name="lastName" placeholder="Last Name">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit">Sign up!</button> -->
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>First Name</small>
+          <input id='signupFirstName' class='form-input' type="text" name="firstName" placeholder="First Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>Last Name</small>
+          <input id='signupLastName' class='form-input' type="text" name="lastName" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>Email</small>
+          <input id='signupEmail' class='form-input' type="text" name="email" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12'>
+          <small class='small'>Password</small>
+          <input id='signupPassword' class='form-input' type="password" name="password" placeholder="Password">
+        </div>
+      </div>
+      <div class='col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3' style='padding:0px;'>
+        <button class='form-button btn btn-default' type="submit">Sign Up!</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="row" id='back-div'>
+    <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 auth-button">
+      <i class="fa fa-backward" aria-hidden="true"></i>
+      <i class="fa fa-backward" aria-hidden="true"></i>
+      <i class="fa fa-backward" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>

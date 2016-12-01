@@ -1,6 +1,84 @@
+/* index.ejs */
+#auth-div {
+  margin-top: 5%;
+  border: 4px solid black;
+  width: 50%;
+  /*border-left: #76323f;
+  border-bottom: #76323f;
+  border-right: #565656;
+  border-top: #565656;*/
+}
+
+.auth-button {
+  border: 2px solid black;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.auth-button:hover {
+  transition: all .5s ease-in-out;
+  transform: scale(1.2);
+  font-size: 18px;
+  border: none;
+  background-color: #373737;
+  color: white;
+}
+
+.logo-div {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.small {
+  display: block;
+  padding:12px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.form-input {
+  border: none;
+  outline:none;
+  padding: 12px;
+  font-family: 'Roboto Condensed', sans-serif;
+  border-bottom: 1px solid #76323f;
+  width: 100%;
+  background: transparent;
+  font-size: 20px;
+}
+
+.form-button {
+  /*background-color: none;*/
+  /*color: white;*/
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 0px;
+  /*line-height: 40px;*/
+  /*padding: 12px;*/
+  /*text-align: center;*/
+}
+
+.form-button:hover {
+  transition: all .5s ease-in-out;
+  transform: scale(1.2);
+  font-size: 18px;
+  border: none;
+  background-color: #373737;
+  color: white;
+}
+
+/* index.ejs end */
+
 #logo {
   width: 20px;
 }
+
 
 .button-link {
   border: 1px solid black;
@@ -40,6 +118,10 @@
 
 .thumbnail-one {
   border: none !important;
+}
+
+.one-post {
+  margin-top: 2%;
 }
 
 /*.blah {

@@ -1,6 +1,34 @@
 $("document").ready(function(){
   console.log("loaded");
 
+  // authentication
+  $('#login-form').hide();
+  $('#signup-form').hide();
+  $('#back-div').hide();
+
+  $('#sign-up-div').on('click', function() {
+    $('#sign-up-div').hide();
+    $('#log-in-div').hide();
+    $('#signup-form').show();
+    $('#back-div').show();
+  });
+  $('#log-in-div').on('click', function() {
+    $('#sign-up-div').hide();
+    $('#log-in-div').hide();
+    $('#login-form').show();
+    $('#back-div').show();
+  });
+
+  $('#back-div').on('click', function() {
+    $('#sign-up-div').show();
+    $('#log-in-div').show();
+    $('#login-form').hide();
+    $('#signup-form').hide();
+    $('#back-div').hide();
+  });
+
+  // authentication end
+
   $('#alert').delay(5000).fadeOut(2000)
 
   var map = L.map('map', {
@@ -95,11 +123,12 @@ $("document").ready(function(){
     }).done(function(dataFromServer) {
       console.log('ajax success');
       console.log(dataFromServer);
+      // plot each entry on map
       dataFromServer.posts.forEach(function(post) {
         var latitude = post.latitude;
         var longitude = post.longitude;
         var title = post.title
-        var marker = L.marker([latitude, longitude]).addTo(map).bindPopup(title).openPopup();
+        var marker = L.marker([latitude, longitude], {riseOnHover: true}).addTo(map).bindPopup(title).openPopup();
         // push marker into global array to store info first
         // then remove all old markers on every new ajax get request
         markerArray.push(marker);
