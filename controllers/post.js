@@ -36,8 +36,13 @@ router.get('/posts/user', function(req,res) {
     user.getPosts({
       order: [['createdAt', 'DESC']]
     }).then(function(posts) {
-      // console.log('see hereeeee', posts)
-      res.render('posts/post_user', {posts: posts})
+      console.log('see hereeeee', posts.length)
+      if (posts.length < 1) {
+        res.render('posts/post_user', {message: 'Seems like you have not created any post yet.'})
+      } else {
+        console.log('no message');
+        res.render('posts/post_user', {posts: posts, message: ''})
+      }
     });
   });
 });

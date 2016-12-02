@@ -1,5 +1,20 @@
-<h1>user gets redirected after successfully creating a post</h1>
-
+<% if (message) { %>
+  <div class="container" style='text-align:center;'>
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class="row">
+        <div class="col-md-12 roboto-font" style='font-size:100px;'>
+          <strong>Ooops!</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 roboto-font" style='font-size:25px;'>
+          <%= message %>
+          <a href="/home" class='click-here'><span class='grow'>Click here</span></a> and create one!
+        </div>
+      </div>
+    </div>
+  </div>
+<% } else { %>
   <div class="container">
     <div class="row">
       <% posts.forEach(function(post) { %>
@@ -35,3 +50,4 @@
       <% }) %>
     </div>
   </div>
+<% } %>

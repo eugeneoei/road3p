@@ -17,13 +17,15 @@
     <% if (currentUser) { %>
       <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+          <div class="navbar-header col-md-12">
+            <a class="navbar-brand">
               <img id='logo' alt="Brand" src="http://vignette2.wikia.nocookie.net/mexico/images/4/4c/(R).png/revision/latest?cb=20131112010123&path-prefix=es">
             </a>
-            <span><%= currentUser.firstName %></span>
-            <a href="/home">Home</a>
-            <a href="/logout">Log Out</a>
+            <!-- <div class="pull-right container"> -->
+            <p class="navbar-text pull-right"><a href="/logout">Log Out</a></p>
+            <p class="navbar-text pull-right"><a href="/home">Home</a></p>
+            <p class="navbar-text pull-right"><%= currentUser.firstName %> <%= currentUser.lastName %></p>
+            <!-- </div> -->
           </div>
         </div>
       </nav>

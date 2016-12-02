@@ -5,7 +5,8 @@
   <a id='create-button' class="btn btn-default button-link col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2" href='#create-form' role="button">New Post</a>
   <a id='user-posts-button' class="btn btn-default button-link col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-2 col-xs-offset-1" href='posts/user' role="button">Your Posts</a>
   <select class="category-select col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-2 col-xs-offset-1" name="category-select">
-    <option value="all">All</option>
+    <option>Choose a Category</option>
+    <option value="All">All</option>
     <% categories.forEach(function(category) { %>
     <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
     <% }) %>
@@ -28,7 +29,7 @@
           <small>Category</small>
           <select name="category">
             <% categories.forEach(function(category) { %>
-              <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
+            <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
             <% }) %>
           </select>
           <small>Image</small>

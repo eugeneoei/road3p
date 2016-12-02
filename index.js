@@ -65,14 +65,11 @@ app.get('/home', function(req,res) {
 });
 
 app.get('/category/:name', function(req,res) {
-  console.log(req.params.name);
   if (req.params.name === 'All') {
-    console.log('ajax call for all posts');
     db.post.findAll().then(function(posts) {
       res.json({posts:posts});
     });
   } else {
-    console.log('else ajax call for all posts');
     db.post.findAll({
       where: { category: req.params.name}
     }).then(function(posts) {

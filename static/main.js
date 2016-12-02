@@ -69,16 +69,15 @@ $("document").ready(function(){
   }
 
   function showPosition(position) {
-   // document.write('Latitude: '+position.coords.latitude+'Longitude: '+position.coords.longitude);
-  //  console.log(position.coords.latitude);
    var latitude = position.coords.latitude;
-   // 1.2790971
    var longitude = position.coords.longitude;
-   // 103.8414975
-  //  console.log(position.coords.longitude);
-   L.marker([latitude, longitude]).addTo(map).bindPopup("You're here").openPopup();
-   // L.marker([1.375133, 103.846914]).addTo(map);
-   // L.marker(coordinates[i]).addTo(map).bindPopup(title[i].value).openPopup();
+   //  L.marker([latitude, longitude]).addTo(map).bindPopup("You're here").openPopup();
+   L.circle([latitude, longitude], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(map).bindPopup("You're here!").openPopup();
   }
 
   function showError(error) {
