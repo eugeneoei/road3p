@@ -48,7 +48,7 @@ router.post('/signup', function(req, res) {
 // handle user login
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
-  successFlash: 'Welcome back!',
+  successFlash: 'Good day! How is it going for you today?',
   failureRedirect: '/',
   failureFlash: 'Seems like the email and password do not match. Please try again.',
 }));

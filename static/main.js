@@ -201,4 +201,11 @@ $("document").ready(function(){
 
   // NAVBAR END //
 
+  // confirm prompt box before delete
+  $("#delete-button").click(function(){
+    if (!confirm("Are you sure you want to delete your post?")) {
+      return false;
+    }
+  });
+
 }); // DOM CONTENT LOADED END

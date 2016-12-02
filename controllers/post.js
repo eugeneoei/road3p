@@ -36,11 +36,10 @@ router.get('/posts/user', function(req,res) {
     user.getPosts({
       order: [['createdAt', 'DESC']]
     }).then(function(posts) {
-      console.log('see hereeeee', posts.length)
       if (posts.length < 1) {
+        // if user has not created any post, flash this message
         res.render('posts/post_user', {message: 'Seems like you have not created any post yet.'})
       } else {
-        console.log('no message');
         res.render('posts/post_user', {posts: posts, message: ''})
       }
     });
@@ -77,7 +76,6 @@ router.get('/posts/:id/edit', function(req,res) {
 
 
 // CREATE new post
-// need to convert address to lat and long
 router.post('/posts', function(req,res) {
   var latitude = 0;
   var longitude = 0;
@@ -96,44 +94,11 @@ router.post('/posts', function(req,res) {
         latitude: latitude,
         longitude: longitude
       }).then(function(post) {
-        res.redirect('posts/user')
+        res.redirect('/posts/' + post.id);
       });
     });
   });
 });
-
-// CREATE new post
-// router.post('/posts', function(req,res) {
-//   geocoder.geocode(req.body.address, function(err, r) {
-//     var latitude = r[0].latitude;
-//     var longitude = r[0].longitude;
-//     db.post.findOrCreate({
-//       where: {
-//         address: req.body.address
-//       },
-//       defaults: {
-//         title: req.body.title,
-//         image_url: req.body.image_url,
-//         category: req.body.category,
-//         description: req.body.description,
-//         latitude: latitude,
-//         longitude: longitude,
-//         userId: req.user.dataValues.id
-//       }
-//     }).spread(function(post, created) {
-//       if (created) {
-//         res.render('posts/userPosts', {message: 'Your post has been succesfully created!'})
-//       } else {
-//         console.log('falied meh?????')
-//         req.flash('error', 'Seems like you missed out some fields. Please try again.');
-//         res.redirect('/home');
-//       }
-//     }).catch(function(error) {
-//       req.flash('error', error.message);
-//       res.redirect('/home');
-//     });
-//   })
-// });
 
 
 // UPDATE post

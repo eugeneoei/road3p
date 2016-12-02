@@ -1,11 +1,11 @@
 
 <% if (alerts.error) { %>
   <% alerts.error.forEach(function(msg) { %>
-    <div id='alert' class="alert alert-danger"><%= msg %></div>
+    <div id='alert' class="alert alert-danger roboto-font" style='text-align:center;'><%= msg %></div>
   <% }); %>
 <% } %>
 <% if (alerts.success) { %>
   <% alerts.success.forEach(function(msg) { %>
-    <div id='alert' class="alert alert-success"><%= msg %></div>
+    <div id='alert' class="alert alert-success roboto-font" style='text-align:center;'><%= msg %></div>
   <% }); %>
 <% } %>

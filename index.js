@@ -66,12 +66,15 @@ app.get('/home', function(req,res) {
 
 app.get('/category/:name', function(req,res) {
   if (req.params.name === 'All') {
-    db.post.findAll().then(function(posts) {
+    db.post.findAll({
+      order: [['title', 'ASC']]
+    }).then(function(posts) {
       res.json({posts:posts});
     });
   } else {
     db.post.findAll({
-      where: { category: req.params.name}
+      where: { category: req.params.name},
+      order: [['title', 'ASC']]
     }).then(function(posts) {
       res.json({posts:posts});
     });
