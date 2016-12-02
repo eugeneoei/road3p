@@ -1,5 +1,7 @@
 $("document").ready(function(){
   console.log("loaded");
+  console.log(window.location.pathname);
+  console.log(document.location);
 
   // AUTHENTICATION
   $('#login-form').hide();
@@ -54,7 +56,6 @@ $("document").ready(function(){
   }).addTo(map);
 
   // PLOT MAP END
-
 
   // GET CLIENT'S CURRENT LOCATION
   if (navigator.geolocation) {
