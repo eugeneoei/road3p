@@ -185,12 +185,8 @@
 
 .post-button {
   font-family: 'Roboto Condensed', sans-serif;
-  /*width: 50%;*/
   height: 30px;
-  /*border: 2px solid black;*/
-  /*border-radius: 0px;*/
   border: none;
-  /*line-height: 30px;*/
 }
 
 .post-button:hover {
@@ -214,18 +210,3 @@
 #delete-button:hover {
   color: red;
 }
-
-/*.post-button:hover {
-  transition: all .5s ease-in-out;
-  border: none;
-  background-color: #373737;
-  color: white;
-}*/
-
-/*.blah {
-  background-image: url("post.image_url");
-  background-image: ur
-  background-size: contain;
-}
-
-style="background-image: url("' + post.image_url + '"); background-size: contain;"'*/
