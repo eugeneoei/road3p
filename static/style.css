@@ -172,7 +172,7 @@
 }
 
 .thumbnail-own {
-  height: 575px !important;
+  height: 530px !important;
 }
 
 .thumbnail-one {
@@ -182,6 +182,35 @@
 .one-post {
   margin-top: 2%;
 }
+
+.post-button {
+  font-family: 'Roboto Condensed', sans-serif;
+  /*width: 50%;*/
+  height: 30px;
+  /*border: 2px solid black;*/
+  /*border-radius: 0px;*/
+  border: none;
+  /*line-height: 30px;*/
+}
+
+.post-button:hover {
+  background-color: transparent;
+}
+
+/* to remove blue glow shadow */
+.post-button:focus, .post-button:active, .post-button.active, .post-button:focus:active {
+  background-image: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/*.post-button:hover {
+  transition: all .5s ease-in-out;
+  border: none;
+  background-color: #373737;
+  color: white;
+}*/
 
 /*.blah {
   background-image: url("post.image_url");

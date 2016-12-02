@@ -29,23 +29,33 @@
               <p><%= post.address %></p>
             <% } %>
             <p><%= post.category %></p>
-            <% if (post.description.length > 200) { %>
+            <% if (post.description.length > 150) { %>
             <% var description = post.description %>
             <p>
-              <%= description.slice(0,200) %>...
+              <%= description.slice(0,150) %>...
               <a href="/posts/<%= post.id %>">Read More</a>
             </p>
             <% } else { %>
             <p><%= post.description %></p>
             <% } %>
 
-            <p>
-              <a class="btn btn-default" role='button' href="/posts/<%= post.id %>/edit">Edit</a>
-              <!-- <a href="/posts/<%= post.id %>">Delete</a> -->
-              <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
-                <button class="btn btn-default" type="submit">Delete</button>
-              </form>
-            </p>
+            <div class="col-md-12">
+              <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-4 col-xs-offset-2">
+                <a href="/posts/<%= post.id %>">
+                  <button type="button" class="btn btn-default btn-lg post-button">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Read
+                  </button>
+                </a>
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-4">
+                <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+                  <button type="submit" class="btn btn-default btn-lg post-button">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
