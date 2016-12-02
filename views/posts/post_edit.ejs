@@ -1,19 +1,17 @@
 <div id='map'></div>
 
-<h1>here is where user edits post</h1>
-
-<div id='update-form' class="container box">
-  <div class="col-md-4 col-md-offset-4">
+<div id='update-form' class="container">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
     <form action='/posts/<%= info[0].dataValues.id %>?_method=PUT' method="post">
 
       <div class="form-group">
         <div class='col-md-12'>
           <small>Title</small>
-          <input class='form-input' type="text" name="title" value="<%= info[0].dataValues.title %>">
+          <input class='form-input' type="text" name="title" value="<%= info[0].dataValues.title %>" style='margin-bottom:5%;'><br>
           <small>Address</small>
-          <input class='form-input' type="text" name="address" value="<%= info[0].dataValues.address %>">
+          <input class='form-input' type="text" name="address" value="<%= info[0].dataValues.address %>" style='margin-bottom:5%;'><br>
           <small>Category</small>
-          <select name="category">
+          <select style='margin-top:5%; margin-bottom:5%' name="category" class='category-select col-md-12 col-sm-12 col-xs-12'>
             <option value='<%= info[0].category %>'><%= info[0].category %></option>
             <% var categories = info[1] %>
             <% categories.forEach(function(category) { %>
@@ -22,12 +20,15 @@
               <option value="<%= category.dataValues.name %>"><%= category.dataValues.name %></option>
               <% } %>
             <% }) %>
-          </select>
+          </select><br>
           <small>Image</small>
-          <input class='form-input' type="text" name="image_url" value="<%= info[0].dataValues.image_url %>">
-          <small>Description</small>
-          <textarea class="entry" type="text" name="description" rows="10" cols="40" value=""><%= info[0].dataValues.description %></textarea>
-          <button class="btn btn-default" type="submit">Update</button>
+          <input class='form-input' type="text" name="image_url" value="<%= info[0].dataValues.image_url %>" style='margin-bottom:5%;'><br>
+          <small>Description</small><br>
+          <textarea style='margin-top:5%; margin-bottom:5%' class="entry form-input" type="text" name="description" rows="10" cols="80" value=""><%= info[0].dataValues.description %></textarea><br>
+          <!-- <button class="btn btn-default" type="submit">Update</button> -->
+          <button id='update-button' type="submit" class="btn btn-default btn-lg post-button" style='margin-bottom:5%; font-size:180%;'>
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Update
+          </button>
         </div>
       </div>
 
