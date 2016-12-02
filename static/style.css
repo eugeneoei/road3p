@@ -52,6 +52,7 @@
   border: none;
   background-color: #373737;
   color: white;
+  cursor: pointer;
 }
 
 .logo-div {
