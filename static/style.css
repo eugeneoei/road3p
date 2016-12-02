@@ -107,8 +107,8 @@ select.category-select {
   /*-webkit-border-radius: 0px;*/
   /*border: none;*/
   /*-webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;*/
+  -moz-box-shadow: none;*/
+  box-shadow: none;
 }
 
 select.category-select:active {
@@ -136,11 +136,12 @@ select.category-select:active {
 #map {
   height: 500px;
   margin-top: 2%;
+  margin-bottom: 3%;
 }
 
-#ajax-post {
+/*#ajax-post {
   margin-top: 2%;
-}
+}*/
 
 .thumbnail {
   height: 488px;

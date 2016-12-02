@@ -25,6 +25,14 @@ $("document").ready(function(){
     $('#login-form').hide();
     $('#signup-form').hide();
     $('#back-div').hide();
+
+    // empty input fields on back
+    $('#loginEmail').val('')
+    $('#loginPassword').val('')
+    $('#signupFirstName').val('')
+    $('#signupLastName').val('')
+    $('#signupEmail').val('')
+    $('#signupPassword').val('')
   });
 
   // AUTHENTICATION END
