@@ -191,4 +191,15 @@ $("document").ready(function(){
   });
   // AJAX GET REQUEST WHENEVER USER SELECTS A DROPDOWN OPTION
 
+  // NAVBAR //
+    $('#icon-menu').hide();
+    $('#icon-bar').on('click', function() {
+      $('#icon-menu').show();
+    })
+    $(document).on('click', function() {
+      $('#icon-menu').hide();
+    })
+
+  // NAVBAR END //
+
 }); // DOM CONTENT LOADED END
