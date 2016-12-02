@@ -3,6 +3,15 @@
   width: 20px;
 }
 
+#icon-menu>li>a:hover {
+  background-color: #828081;
+  color: white
+}
+
+#icon-bar:hover {
+  cursor: pointer;
+}
+
 /*.navbar-header {
   line-height: 50px;
 }*/
