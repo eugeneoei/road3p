@@ -64,6 +64,7 @@ $("document").ready(function(){
    };
    navigator.geolocation.getCurrentPosition(showPosition, showError, optn);
   } else {
+    console.log('geolocation not working');
    alert('Geolocation is not supported in your browser');
   }
 
@@ -188,6 +189,14 @@ $("document").ready(function(){
       console.log('ajax failed');
     })
   });
+
+  // $('a.location').click(function() {
+  //   var lon = this.lon
+  //   var lat = this.lat
+  //
+  // })
+
+
   // AJAX GET REQUEST WHENEVER USER SELECTS A DROPDOWN OPTION
 
   // NAVBAR //
